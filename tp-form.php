@@ -21,6 +21,16 @@ and open the template in the editor.
         $carre3 = new Carre(117, 'yellow');
         $carre3->afficher();
         $carre3->afficherSuperficie();
+        echo '<br/>';
+        include_once './Point.php';
+        $pointA = new Point(10, 5);
+        $pointB = new Point(245, 75);
+        echo $pointA->afficher();
+        echo $pointB->afficher();
+        echo $pointA->distanceFrom($pointB);
+        echo '<br/>';
+        echo $pointA->afficherDistance($pointA, $pointB);
+        
         ?>
     </body>
 </html>
