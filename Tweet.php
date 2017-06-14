@@ -1,5 +1,6 @@
 <?php
 
+
 class Tweet {
 
     private $pseudo;
@@ -12,7 +13,7 @@ class Tweet {
     public function __construct($pseudo, $like, $date, $retweet, $pictprof, $msg) {
         $this->pseudo = $pseudo;
         $this->like = $like;
-        $this->date = $date;
+        $this->date = new DateTime($date);
         $this->retweet = $retweet;
         $this->pictprof = $pictprof;
         $this->msg = $msg;
@@ -50,28 +51,34 @@ class Tweet {
         }
     }
 
-    function addLike($like) {
-        $this->like = $like;//à modifier
+    function addLike($like):int {
+        $this->like = $like;
+        $like++;
     }
 
-    function setDate($date):string {//modifier pour accepter le format date
-        $this->date = $date;
+    function setDate($date) {
+        return $this->date = $date;
     }
 
-    function addRetweet($retweet) {
-        $this->retweet = $retweet;//à modifier
+    function addRetweet($retweet):int {
+        $this->retweet = $retweet;
+        $retweet++;
     }
 
     function setPictprof($pictprof) {
         $this->pictprof = $pictprof;
     }
 
-    function setMsg($msg) {
-        if (strlen($msg) <= 140) {
-            $this->msg = $msg;
-        } else {
-            return 'Nombre de caractères supérieur à 140';
+    function setMsg($msg) {//maxlength en HTML dans le input textarea
+        if (strlen($msg) > 140) {
+            echo 'Nombre de caractères supérieur à 140';
+            } else {
+            return $this->msg = $msg;
         }
+    }
+    public function afficher(){
+        return '<section><img src="' . $this->pictprof. '"/>' . $this->pseudo . ' a écrit : ' . $this->msg.'
+    <br/>'. $this->date->format('Y/m/d') . ' ' . $this->retweet . ' retweet(s) et ' . $this->like.' like(s).</p></section>';
     }
 
 }
