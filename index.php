@@ -6,7 +6,11 @@ echo '<br>'.$date;
 echo ' '.$retweet.' retweets et '.$like. ' likes';
 }
 */
+session_start();
 include_once('Tweet.php');
+if(isset($_SESSION[Tweet::class])) {
+    $_SESSION[Tweet::class]->retweet = $retweet;        
+}
 //$date = new DateTime('2017-10-05');
 //echo $date->format('Y/m/d');
 $tweet1 = new Tweet('Eduardo', 27, '2017-10-05', 15, 'dindon.jpg', 'Issou');
@@ -48,10 +52,11 @@ h2 {
 //foreach($data as $tweet) {
 //if ($this->pseudo !=="Nicolas Sarkozy") { ?>
 <?php
-  echo $tweet1->afficher();
+echo $tweet1->afficher();
 echo $tweet2->afficher();
 echo $tweet3->afficher();
 echo $tweet4->afficher();
+echo $tweet1->addRetweet(18);
 $tweet1->setMsg("Hello from the other side");
 echo $tweet1->afficher();
 $tweet2->setMsg("Hello from the other sideHello from the other sideHello from the other sideHello from the other sideHello from the other sideHello from the other side");
@@ -75,5 +80,8 @@ echo $tweet4->afficher();
 <h2>Top trending</h2>    
     <div class="top"><p><?php //tweet('Nicolas Sarkozy', 'Vive la France', '<img src="sarko.jpg">', '03/05/17', 115, 523); ?></p></div>
 -->
+<?php
+ $_SESSION[Tweet::class]=$retweet; 
+?>
 </body>
 </html>

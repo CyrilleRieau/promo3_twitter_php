@@ -60,9 +60,8 @@ class Tweet {
         return $this->date = $date;
     }
 
-    function addRetweet($retweet):int {
-        $this->retweet = $retweet;
-        $retweet++;
+    function addRetweet(int $retweet) {
+        $this->retweet += $retweet++;
     }
 
     function setPictprof($pictprof) {
